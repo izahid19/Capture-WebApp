@@ -2,17 +2,24 @@ import React from 'react';
 import { About } from '../styles';
 import styled from 'styled-components';
 import Toggle from './Toggle';
-import { motion } from 'framer-motion';
+import { LayoutGroup } from 'framer-motion';
+import { useScroll } from "./useScroll";
+import { scrollReveal } from "../animation";
+
 
 const FaqSection = () => {
+  const [element, controls] = useScroll();
   return (
-    <Faq>
+    <Faq
+      variants={scrollReveal}
+      animate={controls}
+      initial="hidden"
+      ref={element}>
       <h2>
         Any Questions? <span>FAQ</span>
       </h2>
-      <Toggle>
-        <motion.div className="question">
-          <h4>How Do I Start?</h4>
+    <LayoutGroup>
+    <Toggle title="How Do I Start?">
           <div className="answer">
             <p>Lorem ipsum dolor sit amet.</p>
             <p>
@@ -20,44 +27,35 @@ const FaqSection = () => {
               reprehenderit perferendis sunt magni dolores ratione.
             </p>
           </div>
-          <div className="faq-line"></div>
-        </motion.div>
-      </Toggle>
-      <Toggle>
-        <div className="question">
-          <h4>What Products do you offer?</h4>
+          </Toggle>
+        <Toggle title="Daily Schedule">
           <div className="answer">
             <p>Lorem ipsum dolor sit amet.</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
-              reprehenderit perferendis sunt magni dolores ratione.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error,
+              totam.
             </p>
           </div>
-          <div className="faq-line"></div>
-        </div>
-      </Toggle>
-      <div className="question">
-        <h4>Diferrent Payment Methods</h4>
-        <div className="answer">
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
-            reprehenderit perferendis sunt magni dolores ratione.
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>Daily Schedule</h4>
-        <div className="answer">
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
-            reprehenderit perferendis sunt magni dolores ratione.
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
+        </Toggle>
+        <Toggle title="Diferrent Payment Methods">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Necessitatibus, neque.
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="What Products do you offer.">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Necessitatibus, neque.
+            </p>
+          </div>
+        </Toggle>
+      </LayoutGroup>
     </Faq>
   );
 };
