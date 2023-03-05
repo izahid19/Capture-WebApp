@@ -1,40 +1,32 @@
 import React from 'react';
-//Global Style
-import GlobalStyle from './components/GlobalStyle';
 //Import Pages
-import AboutUs from './pages/AboutUs';
-import OurWork from './pages/OurWork';
-import ContactUs from './pages/ContactUs';
-import MovieDetail from './pages/MovieDetail';
-import Nav from './components/Nav';
-import { Route, Switch, useLocation } from 'react-router-dom';
-//Animation
-import { AnimatePresence } from 'framer-motion';
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+import OurWork from "./pages/OurWork";
+import Nav from "./components/Nav";
+import MovieDetail from "./pages/MovieDetail";
+
+//Import GlobalStyle
+import GlobalStyle from "./components/GlobalStyle";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
 function App() {
   const location = useLocation();
   return (
     <div className="App">
       <GlobalStyle />
       <Nav />
-      <AnimatePresence wait>
-      <Switch location={location} key={location.pathname}>
-        <Route path="/" exact>
-          <AboutUs />
-        </Route>
-        <Route path="/work" exact>
-          <OurWork />
-        </Route>
-        <Route path="/contact">
-          <ContactUs />
-        </Route>
-        <Route path="/work/:id">
-          <MovieDetail />
-        </Route>
-      </Switch>
-
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route path="/" exact component={AboutUs} />
+          <Route path="/work" exact component={OurWork} />
+          <Route path="/contact" exact component={ContactUs} />
+          <Route path="/work/:id" component={MovieDetail} />
+        </Switch>
       </AnimatePresence>
-     
     </div>
   );
 }
-export default App
+
+export default App;
